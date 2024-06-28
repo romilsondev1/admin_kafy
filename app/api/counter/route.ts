@@ -5,7 +5,7 @@ import dbConnection from "@/middlewares/dbConnect"
 
 dbConnection()
 
-export async function POST(request: NextResponse, response: NextResponse) {
+export async function POST(request: any) {
     try {
         const body = await request.json()
         const createCounter = await Counter.create(body)

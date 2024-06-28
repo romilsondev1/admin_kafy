@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 import { NextResponse, NextRequest } from 'next/server'
 
 
-export async function POST(request:NextRequest, res:any){
+export async function POST(request:any, res:any){
 
     const body = await request.json()
 
