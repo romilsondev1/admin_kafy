@@ -4,7 +4,13 @@ import UserProps from '@/models/userProps'
 import { NextResponse } from 'next/server'
 
 export async function GET(request: any) {
+    try {
+        const response = await User.find({}, {usernameRecupered:1 , cpf:1, emailRecupered:1, city:1, state:1, typeUser:1, isActive:1})
 
+        return NextResponse.json({ success: true, data: response }, { status: 200 })
+    } catch (error) {
+        return NextResponse.json({ error: 'Failed to get company' }, { status: 500 })
+    }
 }
 
 export async function POST(req: any, res: any) {

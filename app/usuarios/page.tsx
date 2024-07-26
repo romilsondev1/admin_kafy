@@ -3,13 +3,13 @@ import Button from "@/components/button";
 import Menu from "@/components/menu";
 import Nav from "@/components/nav";
 import Table from "@/components/table";
-import { getProvider } from "@/controllers/getProvider";
+import { getUser } from "@/controllers/getUser";
 import userLogout from "@/hooks/userLogout";
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const [Provider, setProvider]: any = useState([])
+  const [User, setUser]: any = useState([])
   const router = useRouter()
   function logout() {
     userLogout()
@@ -36,8 +36,8 @@ export default function Page() {
   useEffect(() => {
     async function find() {
       try {
-        const providers = await getProvider()
-        setProvider(providers)
+        const users = await getUser()
+        setUser(users)
       } catch (error) {
 
       }
@@ -46,8 +46,8 @@ export default function Page() {
   }, [])
 
   async function reload(){
-    //const providers = await getProvider()
-    //setProvider(providers)
+    //const users = await getUser()
+    //setUser(users)
   }
 
   return (
@@ -55,8 +55,8 @@ export default function Page() {
       <Nav />
       <Menu/>
       <div className="p-8">
-        <h1 className="font-bold my-4">Fornecedores externos</h1>
-        <Table data={Provider} reload={reload} origin={'provider'}/>
+        <h1 className="font-bold my-4">Usuários do sistema</h1>
+        <Table data={User} reload={reload} origin={'user'}/>
       </div>
     </main>
   );

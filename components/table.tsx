@@ -33,6 +33,30 @@ export default function Table({ data, reload, origin }: any) {
             ]
         },
         {
+            origin: 'user',
+            numberOfColumns: 7,
+            tableHeaders: [
+                'Nome',
+                'Documento',
+                'Email',
+                'Cidade',
+                'Estado',
+                'Tipo do usuário',
+                'Acesso'
+            ],
+            tableProperties: [
+                { value: 'usernameRecupered' },
+                { value: 'cpf' },
+                { value: 'emailRecupered' },
+                { value: 'city'},
+                { value: 'state'},
+                { value: 'typeUser'}
+            ],
+            action: [
+                'sendingEmail'
+            ]
+        },
+        {
             origin: 'clients',
             numberOfColumns: 5,
             tableHeaders: [
@@ -55,7 +79,7 @@ export default function Table({ data, reload, origin }: any) {
             ]
         }
     ]
-    console.log(data)
+
     return (
         <div className="rounded p-4 bg-slate-50 border">
             <div className="flex justify-end">
@@ -108,7 +132,7 @@ export default function Table({ data, reload, origin }: any) {
                                                     : null
                                                 }
                                                 {item.action.includes('sendingEmail') ?
-                                                    <td onClick={async () => { await newLinkForAccess({_idUser: element._id, email:element.contact.email, user:element.business}); reload() }} className="text-center"><Button prop={{ text: 'Acesso', color: 2, hover: 3 }} /></td>
+                                                    <td onClick={async () => { await newLinkForAccess({_idUser: element._id, email: origin === 'user' ? element.emailRecupered :element.contact.email, user: origin === 'user' ? element.usernameRecupered : element.business}); reload() }} className="text-center"><Button prop={{ text: 'Acesso', color: 2, hover: 3 }} /></td>
                                                     :
                                                     null
                                                 }
