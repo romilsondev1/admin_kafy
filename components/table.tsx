@@ -93,8 +93,8 @@ export default function Table({ data, reload, origin }: any) {
                         {structury.flatMap((item: any, id: any) => (
                             item.origin === origin ?
                                 <>
-                                    {item.tableHeaders.map((element: any) => (
-                                        <th className="py-4">{element}</th>
+                                    {item.tableHeaders.map((element: any, id:any) => (
+                                        <th key={id} className="py-4">{element}</th>
                                     ))}
                                 </>
                                 : null
