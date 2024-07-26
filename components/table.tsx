@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation"
 import Button from "./button"
 import Link from "next/link"
 import { isActive } from "@/controllers/isActive"
+import newLinkForAccess from "@/controllers/newLinkForAccess"
 
 export default function Table({ data, reload, origin }: any) {
     const router = useRouter()
@@ -23,7 +24,7 @@ export default function Table({ data, reload, origin }: any) {
             tableProperties: [
                 { value: 'business' },
                 { value: 'doc_identify_cnpj_or_cpf' },
-                { value: 'contato', subpropertys: ['email'] },
+                { value: 'contact', subpropertys: ['email'] },
                 { value: 'address', subpropertys: ['city'] },
                 { value: 'address', subpropertys: ['uf'] }
             ],
@@ -107,7 +108,7 @@ export default function Table({ data, reload, origin }: any) {
                                                     : null
                                                 }
                                                 {item.action.includes('sendingEmail') ?
-                                                    <td onClick={async () => { await isActive(element._id, false); reload() }} className="text-center"><Button prop={{ text: 'Acesso', color: 2, hover: 3 }} /></td>
+                                                    <td onClick={async () => { await newLinkForAccess({_idUser: element._id, email:element.contact.email, user:element.business}); reload() }} className="text-center"><Button prop={{ text: 'Acesso', color: 2, hover: 3 }} /></td>
                                                     :
                                                     null
                                                 }
