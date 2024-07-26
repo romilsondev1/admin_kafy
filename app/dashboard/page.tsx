@@ -1,5 +1,6 @@
 "use client"
 import Button from "@/components/button";
+import Menu from "@/components/menu";
 import Nav from "@/components/nav";
 import Table from "@/components/table";
 import { getCompany } from "@/controllers/getCompanys";
@@ -52,6 +53,7 @@ export default function Page() {
   return (
     <main>
       <Nav />
+      <Menu/>
       <div className="p-8">
         <h1 className="font-bold my-4">Seus Clientes</h1>
         <Table data={company} reload={reload} />
