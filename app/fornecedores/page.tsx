@@ -3,13 +3,13 @@ import Button from "@/components/button";
 import Menu from "@/components/menu";
 import Nav from "@/components/nav";
 import Table from "@/components/table";
-import { getCompany } from "@/controllers/getCompanys";
+import { getProvider } from "@/controllers/getProvider";
 import userLogout from "@/hooks/userLogout";
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const [company, setCompany]: any = useState([])
+  const [Provider, setProvider]: any = useState([])
   const router = useRouter()
   function logout() {
     userLogout()
@@ -36,8 +36,8 @@ export default function Page() {
   useEffect(() => {
     async function find() {
       try {
-        const companys = await getCompany()
-        setCompany(companys)
+        const providers = await getProvider()
+        setProvider(providers)
       } catch (error) {
 
       }
@@ -46,8 +46,8 @@ export default function Page() {
   }, [])
 
   async function reload(){
-    const companys = await getCompany()
-    setCompany(companys)
+    //const providers = await getProvider()
+    //setProvider(providers)
   }
 
   return (
@@ -56,7 +56,7 @@ export default function Page() {
       <Menu/>
       <div className="p-8">
         <h1 className="font-bold my-4">Seus Clientes</h1>
-        <Table data={company} reload={reload} origin={'clients'}/>
+        <Table data={Provider} reload={reload} origin={'provider'}/>
       </div>
     </main>
   );
